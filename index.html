@@ -3,150 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHIKIMORI STORE | TOP UP MURAH</title>
+    <title>SHIKIMORI STORE | FULL FEATURE</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
-        :root { --pink-soft: #ffb7c5; --darker: #0a0a0c; --card-bg: #16161a; }
-        body { background-color: var(--darker); color: white; font-family: 'Segoe UI', sans-serif; }
+        :root { --pink-shiki: #ffb7c5; --bg-dark: #0a0a0c; --card: #16161a; }
+        body { background-color: var(--bg-dark); color: white; font-family: 'Segoe UI', sans-serif; }
         
-        /* Navbar Nara Style */
-        .navbar { background: var(--pink-soft); padding: 12px 20px; border-bottom: 3px solid #f8a5b5; }
-        .navbar-brand { font-weight: 900; color: #000 !important; font-size: 1.3rem; }
+        /* Navbar & Sidebar */
+        .navbar { background: var(--pink-shiki); border-bottom: 3px solid #f8a5b5; position: sticky; top: 0; z-index: 1000; }
+        .navbar-brand { font-weight: 900; color: #000 !important; }
 
-        /* Banner Utama */
-        .banner { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://w0.peakpx.com/wallpaper/559/382/HD-wallpaper-shikimori-micchon-shikimori-shikimori-s-not-just-a-cutie.jpg'); background-size: cover; background-position: center; height: 180px; border-radius: 20px; margin: 20px 0; display: flex; align-items: center; justify-content: center; text-align: center; border: 2px solid var(--pink-soft); }
+        /* Banner */
+        .banner { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://w0.peakpx.com/wallpaper/559/382/HD-wallpaper-shikimori-micchon-shikimori-shikimori-s-not-just-a-cutie.jpg'); background-size: cover; background-position: center; border-radius: 15px; padding: 40px 20px; text-align: center; border: 1px solid var(--pink-shiki); margin: 20px 0; }
 
-        /* Fitur Lengkap Card */
-        .card-game { background: var(--card-bg); border: 1px solid #333; border-radius: 15px; padding: 20px; margin-bottom: 25px; transition: 0.3s; }
-        .card-game:hover { border-color: var(--pink-soft); transform: translateY(-5px); }
+        /* Status Server */
+        .status-pill { font-size: 0.7rem; padding: 2px 10px; border-radius: 10px; background: #00ff8822; color: #00ff88; border: 1px solid #00ff88; }
+
+        /* Cards */
+        .card-shiki { background: var(--card); border: 1px solid #333; border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+        .step-num { background: var(--pink-shiki); color: black; border-radius: 50%; width: 25px; height: 25px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px; }
+
+        /* Grid Item */
+        .item-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .item-box { background: #1f1f23; border: 1px solid #333; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.2s; position: relative; }
+        .item-box:hover { border-color: var(--pink-shiki); background: #252529; }
+        .item-box.active { border-color: var(--pink-shiki); background: rgba(255,183,197,0.15); border-width: 2px; }
+        .item-box.active::after { content: "✅"; position: absolute; top: 5px; right: 10px; font-size: 0.8rem; }
+
+        .btn-pay { background: var(--pink-shiki); color: black; font-weight: 900; width: 100%; padding: 15px; border-radius: 12px; border: none; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(255,183,197,0.4); }
         
-        .label-step { background: var(--pink-soft); color: #000; font-weight: bold; padding: 5px 15px; border-radius: 20px; margin-bottom: 15px; display: inline-block; font-size: 0.8rem; }
+        /* Testimoni Animasi */
+        .testi-card { font-style: italic; font-size: 0.8rem; background: #111; padding: 10px; border-radius: 10px; border-left: 3px solid var(--pink-shiki); margin-bottom: 10px; }
 
-        .form-control, .form-select { background: #000; color: white; border: 1px solid #444; border-radius: 10px; }
-        .form-control:focus { background: #000; color: white; border-color: var(--pink-soft); box-shadow: none; }
-
-        /* Diamond Grid */
-        .dm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .dm-item { background: #1f1f23; border: 1px solid #333; padding: 12px; border-radius: 12px; cursor: pointer; text-align: center; font-size: 0.9rem; }
-        .dm-item:hover, .dm-item.active { border-color: var(--pink-soft); background: rgba(255, 183, 197, 0.1); }
-
-        .btn-order { background: var(--pink-soft); color: #000; font-weight: 800; width: 100%; padding: 15px; border-radius: 12px; border: none; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(255, 183, 197, 0.3); }
-        
-        /* Floating CS */
-        .floating-cs { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 100; }
+        .floating-wa { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; z-index: 999; }
     </style>
 </head>
 <body>
 
-<nav class="navbar d-flex justify-content-between align-items-center">
-    <span class="navbar-brand">🌸 SHIKIMORI STORE</span>
+<nav class="navbar px-3">
+    <span class="navbar-brand">🌸 TOKO SHIKIMORI</span>
     <div class="dropdown">
-        <i class="bi bi-list" id="menuBtn" data-bs-toggle="dropdown" style="font-size: 1.8rem; color: black; cursor: pointer;"></i>
-        <ul class="dropdown-menu dropdown-menu-end shadow" style="background: #252529; border: 1px solid #ffb7c5;">
-            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-person-circle"></i> Login Member</a></li>
+        <i class="bi bi-list fs-2" data-bs-toggle="dropdown" style="color: black; cursor: pointer;"></i>
+        <ul class="dropdown-menu dropdown-menu-end shadow" style="background: #16161a; border: 1px solid var(--pink-shiki);">
             <li><a class="dropdown-item text-white" href="#"><i class="bi bi-search"></i> Lacak Pesanan</a></li>
+            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-tag"></i> Daftar Harga</a></li>
             <li><hr class="dropdown-divider" style="border-color: #444;"></li>
-            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-info-circle"></i> Bantuan</a></li>
+            <li><a class="dropdown-item text-white" href="#"><i class="bi bi-whatsapp"></i> Hubungi Admin</a></li>
         </ul>
     </div>
 </nav>
 
-<div class="container">
+<div class="container pb-5">
     <div class="banner">
-        <div>
-            <h3 class="fw-bold mb-0">TOP UP HARGA PELAJAR</h3>
-            <p class="mb-0">Proses Cepat 1-3 Detik ⚡</p>
+        <span class="status-pill mb-2"><i class="bi bi-lightning-fill"></i> SERVER ONLINE</span>
+        <h2 class="fw-bold">TOP UP ML & FF INSTAN</h2>
+        <p class="small text-white-50">Legal 100%, Murah & Masuk Dalam Hitungan Detik!</p>
+    </div>
+
+    <div class="card-shiki">
+        <h5><span class="step-num">1</span> Masukkan Data Akun</h5>
+        <div class="row g-2 mt-2">
+            <div class="col-8"><input type="number" id="uid" class="form-control bg-dark text-white border-secondary" placeholder="User ID"></div>
+            <div class="col-4"><input type="number" id="zid" class="form-control bg-dark text-white border-secondary" placeholder="Zone ID"></div>
         </div>
     </div>
 
-    <div class="card-game">
-        <span class="label-step">LANGKAH 1</span>
-        <h5><i class="bi bi-person-fill"></i> Masukkan Data Akun</h5>
-        <div class="row">
-            <div class="col-8">
-                <input type="number" id="userId" class="form-control" placeholder="User ID">
+    <div class="card-shiki">
+        <h5><span class="step-num">2</span> Pilih Nominal Diamonds</h5>
+        <div class="item-grid mt-3">
+            <div class="item-box" onclick="selectItem(this, '5 Dm', '1.500')">5 Diamonds<br><small class="text-white-50">Rp 1.500</small></div>
+            <div class="item-box" onclick="selectItem(this, '86 Dm', '19.800')">86 Diamonds<br><small class="text-white-50">Rp 19.800</small></div>
+            <div class="item-box" onclick="selectItem(this, '172 Dm', '39.500')">172 Diamonds<br><small class="text-white-50">Rp 39.500</small></div>
+            <div class="item-box" onclick="selectItem(this, '257 Dm', '59.000')">257 Diamonds<br><small class="text-white-50">Rp 59.000</small></div>
+            <div class="item-box" onclick="selectItem(this, 'WDP', '27.500')">Weekly Pass<br><small class="text-white-50">Rp 27.500</small></div>
+            <div class="item-box" onclick="selectItem(this, 'Twiligt', '135.000')">Twilight Pass<br><small class="text-white-50">Rp 135k</small></div>
+        </div>
+    </div>
+
+    <div class="card-shiki">
+        <h5><span class="step-num">3</span> Pilih Metode Bayar</h5>
+        <div class="mt-3">
+            <div class="p-3 border border-secondary rounded d-flex justify-content-between align-items-center mb-2">
+                <div><i class="bi bi-qr-code"></i> QRIS / DANA / OVO</div>
+                <input type="radio" name="pay" checked>
             </div>
-            <div class="col-4">
-                <input type="number" id="serverId" class="form-control" placeholder="Zone ID">
+            <div class="p-3 border border-secondary rounded d-flex justify-content-between align-items-center">
+                <div><i class="bi bi-shop"></i> Alfamart / Indo</div>
+                <input type="radio" name="pay">
             </div>
         </div>
-        <small class="text-muted mt-2 d-block">*Pastikan ID sudah benar sebelum membayar.</small>
     </div>
 
-    <div class="card-game">
-        <span class="label-step">LANGKAH 2</span>
-        <h5><i class="bi bi-gem"></i> Pilih Nominal Diamond</h5>
-        <div class="dm-grid mt-3">
-            <div class="dm-item" onclick="pilihDm(this, '5 Dm', 'Rp 1.500')">5 Diamonds<br><b>Rp 1.500</b></div>
-            <div class="dm-item" onclick="pilihDm(this, '86 Dm', 'Rp 19.500')">86 Diamonds<br><b>Rp 19.500</b></div>
-            <div class="dm-item" onclick="pilihDm(this, '172 Dm', 'Rp 39.000')">172 Diamonds<br><b>Rp 39.000</b></div>
-            <div class="dm-item" onclick="pilihDm(this, '257 Dm', 'Rp 58.000')">257 Diamonds<br><b>Rp 58.000</b></div>
-            <div class="dm-item" onclick="pilihDm(this, '706 Dm', 'Rp 155.000')">706 Diamonds<br><b>Rp 155.000</b></div>
-            <div class="dm-item" onclick="pilihDm(this, 'WDP', 'Rp 27.000')">Weekly Pass<br><b>Rp 27.000</b></div>
-        </div>
-    </div>
+    <button class="btn-pay mb-4" onclick="checkout()">PESAN SEKARANG ⚡</button>
 
-    <div class="card-game">
-        <span class="label-step">LANGKAH 3</span>
-        <h5><i class="bi bi-wallet2"></i> Metode Pembayaran</h5>
-        <div class="list-group">
-            <label class="list-group-item bg-transparent text-white border-secondary mb-2 rounded">
-                <input class="form-check-input me-2" type="radio" name="pay" checked> QRIS / DANA / OVO
-            </label>
-            <label class="list-group-item bg-transparent text-white border-secondary rounded">
-                <input class="form-check-input me-2" type="radio" name="pay"> Alfamart / Indomaret
-            </label>
-        </div>
-    </div>
-
-    <button class="btn-order" onclick="konfirmasi()">PESAN SEKARANG <i class="bi bi-cart-fill"></i></button>
-
-    <div id="statusBox" class="card-game mt-4 text-center d-none" style="border-color: #00ff88;">
-        <h5 class="text-success"><i class="bi bi-check-circle-fill"></i> PESANAN DIPROSES!</h5>
-        <p class="mb-1" id="sumOrder"></p>
-        <small id="orderId" class="text-muted"></small>
+    <div class="card-shiki">
+        <h5><i class="bi bi-chat-heart"></i> Testimoni Terbaru</h5>
+        <div class="testi-card">"Gila cepet banget, baru klik udah masuk! - Hiro"</div>
+        <div class="testi-card">"Murah pol dibanding toko sebelah. - Syafia"</div>
     </div>
 </div>
 
-<footer class="text-center mt-5 p-4" style="background: #111; font-size: 0.8rem; border-top: 2px solid var(--pink-soft);">
-    <p class="mb-1 fw-bold">SHIKIMORI STORE BY HIRO</p>
-    <p class="mb-1">Layanan Top Up Game Tercepat di Cilacap</p>
-    <p class="text-muted">© 2026 Nara Store Style. All Rights Reserved.</p>
-</footer>
+<div class="modal fade" id="orderModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title">Konfirmasi Pesanan</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Top Up: <b id="mDm"></b></p>
+                <p>ID: <b id="mId"></b></p>
+                <h4 class="text-success fw-bold">Total: Rp <span id="mPrice"></span></h4>
+                <hr class="border-secondary">
+                <p class="small text-white-50">Lanjutkan ke WhatsApp untuk bukti bayar?</p>
+                <button class="btn btn-success w-100 fw-bold" onclick="finalOrder()">BAYAR SEKARANG</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<a href="https://wa.me/628123456789" class="floating-cs" target="_blank">
-    <i class="bi bi-whatsapp"></i>
-</a>
+<a href="https://wa.me/628123456789" class="floating-wa"><i class="bi bi-whatsapp"></i></a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    let selectedDm = "";
-    function pilihDm(element, dm, harga) {
-        document.querySelectorAll('.dm-item').forEach(e => e.classList.remove('active'));
-        element.classList.add('active');
-        selectedDm = dm + " (" + harga + ")";
+    let dLabel = "", dPrice = "";
+    function selectItem(el, name, price) {
+        document.querySelectorAll('.item-box').forEach(x => x.classList.remove('active'));
+        el.classList.add('active');
+        dLabel = name; dPrice = price;
     }
 
-    function konfirmasi() {
-        const id = document.getElementById('userId').value;
-        const zid = document.getElementById('serverId').value;
-        
-        if(!id || !zid || !selectedDm) {
-            alert("Lengkapi Data & Pilih Diamond dulu, Hiro!");
-            return;
-        }
+    function checkout() {
+        const uid = document.getElementById('uid').value;
+        const zid = document.getElementById('zid').value;
+        if(!uid || !zid || !dLabel) return alert("Lengkapi data dulu ya Hiro! 🤧");
 
-        alert("Menghubungkan ke API Game Server...");
-        
-        setTimeout(() => {
-            document.getElementById('statusBox').classList.remove('d-none');
-            document.getElementById('sumOrder').innerText = "Top Up " + selectedDm + " ke ID " + id + "(" + zid + ") BERHASIL!";
-            document.getElementById('orderId').innerText = "Order ID: NARA-" + Math.floor(Math.random() * 999999);
-            window.scrollTo(0, document.body.scrollHeight);
-        }, 1500);
+        document.getElementById('mDm').innerText = dLabel;
+        document.getElementById('mId').innerText = uid + "(" + zid + ")";
+        document.getElementById('mPrice').innerText = dPrice;
+        new bootstrap.Modal(document.getElementById('orderModal')).show();
+    }
+
+    function finalOrder() {
+        const msg = `Halo Admin, Saya mau Top Up ${dLabel}\nID: ${document.getElementById('uid').value}(${document.getElementById('zid').value})\nMetode: QRIS`;
+        window.open(`https://wa.me/628123456789?text=${encodeURIComponent(msg)}`);
     }
 </script>
-
 </body>
 </html>
