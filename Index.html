@@ -5,21 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shikimori-Chan Top Up | Murah & Cepat</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
-        :root { --pink-shikimori: #ffb7c5; --dark-bg: #1a1a1d; }
-        body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .navbar { background: var(--pink-shikimori); color: #000; font-weight: bold; }
-        .card-custom { background: #252529; border: 1px solid var(--pink-shikimori); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
-        .btn-buy { background: var(--pink-shikimori); color: #000; font-weight: bold; width: 100%; border-radius: 10px; }
-        .status-success { color: #00ff88; font-weight: bold; display: none; text-align: center; margin-top: 15px; }
-        .footer-admin { background: #111; padding: 20px; margin-top: 50px; border-top: 2px solid var(--pink-shikimori); font-size: 0.8rem; }
-        input, select { background: #333 !important; color: white !important; border: 1px solid #444 !important; }
+        :root { --pink-shikimori: #ffb7c5; --dark-bg: #0d0d0f; }
+        body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', sans-serif; }
+        .navbar { background: var(--pink-shikimori); color: #000; padding: 10px 15px; }
+        
+        /* Dropdown Titik Tiga */
+        .dropdown-menu { background: #252529; border: 1px solid var(--pink-shikimori); }
+        .dropdown-item { color: white; }
+        .dropdown-item:hover { background: var(--pink-shikimori); color: #000; }
+
+        .card-custom { background: #16161a; border: 1px solid #333; border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+        .btn-buy { background: var(--pink-shikimori); color: #000; font-weight: bold; width: 100%; border-radius: 12px; transition: 0.3s; }
+        .btn-buy:active { transform: scale(0.95); }
+        
+        /* Login Google Style */
+        .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+        .login-box { background: #252529; padding: 30px; border-radius: 20px; text-align: center; border: 1px solid var(--pink-shikimori); width: 85%; max-width: 350px; }
+        .btn-google { background: white; color: #444; width: 100%; padding: 10px; border-radius: 10px; font-weight: bold; border: none; margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        
+        .status-success { color: #00ff88; font-weight: bold; display: none; text-align: center; margin-top: 15px; border: 1px solid #00ff88; }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg px-3">
-  <span class="navbar-brand">🌸 Shikimori-Chan Top Up</span>
+<div id="loginOverlay" class="login-overlay">
+    <div class="login-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" width="40" alt="G">
+        <h5 class="mt-3">Masuk ke Shikimori-Chan</h5>
+        <p style="font-size: 0.8rem; color: #aaa;">Gunakan akun Google untuk melanjutkan top up</p>
+        <button class="btn-google" onclick="simulasiLogin()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" width="20">
+            Login with Google
+        </button>
+    </div>
+</div>
+
+<nav class="navbar d-flex justify-content-between align-items-center">
+  <span class="fw-bold">🌸 Shikimori-Chan Top Up</span>
+  
+  <div class="dropdown">
+    <i class="bi bi-three-dots-vertical" id="menuTiga" data-bs-toggle="dropdown" style="font-size: 1.5rem; cursor: pointer;"></i>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profil Saya</a></li>
+      <li><a class="dropdown-item" href="#"><i class="bi bi-clock-history"></i> Riwayat Order</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item text-danger" href="javascript:location.reload()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+    </ul>
+  </div>
 </nav>
 
 <div class="container mt-4">
@@ -28,66 +62,59 @@
         <select class="form-select mb-3" id="gameSelect">
             <option value="Mobile Legends">Mobile Legends (MLBB)</option>
             <option value="Free Fire">Free Fire (FF)</option>
-            <option value="Pubg Mobile">PUBG Mobile</option>
         </select>
-        <input type="text" class="form-control mb-2" id="userId" placeholder="Masukkan ID (Contoh: 12345678)">
-        <input type="text" class="form-control mb-3" id="serverId" placeholder="Masukkan Server (ML Only)">
+        <input type="text" class="form-control mb-2" id="userId" placeholder="Masukkan User ID">
+        <input type="text" class="form-control mb-3" id="serverId" placeholder="Masukkan Zone ID (Server)">
         
         <select class="form-select" id="nominal">
-            <option value="5">5 Diamonds - Rp 1.500</option>
-            <option value="86">86 Diamonds - Rp 20.000</option>
-            <option value="172">172 Diamonds - Rp 40.000</option>
+            <option value="172 Berlian">172 Berlian - Rp 40.000</option>
+            <option value="257 Berlian">257 Berlian - Rp 60.000</option>
         </select>
     </div>
 
     <div class="card-custom">
         <h5>2. Metode Pembayaran</h5>
-        <div class="form-check mb-2">
-            <input class="form-check-input" type="radio" name="pay" id="qris" checked>
-            <label class="form-check-label">QRIS / DANA (Otomatis)</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="pay" id="bank">
-            <label class="form-check-label">Transfer Bank (Manual)</label>
-        </div>
+        <div class="form-check mb-2"><input class="form-check-input" type="radio" checked><label>QRIS / DANA (Otomatis)</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio"><label>Transfer Bank (Manual)</label></div>
     </div>
 
-    <button class="btn btn-buy py-3" onclick="prosesTopUp()">BELI SEKARANG 🚀</button>
+    <button class="btn btn-buy py-3" onclick="proses()">BELI SEKARANG 🚀</button>
 
     <div id="notifSukses" class="status-success card-custom">
         <p>✅ PEMBAYARAN BERHASIL!</p>
-        <p>Diamond Sedang Masuk ke ID: <span id="displayId"></span></p>
+        <p>Diamond Masuk ke ID: <span id="displayId"></span></p>
         <hr>
-        <small>Order ID: <span id="orderNum"></span></small>
+        <small>ID Pesanan: <span id="orderNum"></span></small>
     </div>
 </div>
 
-<div class="footer-admin text-center">
-    <h6>Pusat Bantuan & Admin</h6>
-    <p>WhatsApp Admin: <a href="https://wa.me/628123456789" style="color: var(--pink-shikimori);">0812-XXXX-XXXX</a></p>
-    <p>Jam Kerja: 08.00 - 22.00 WIB</p>
-    <p>&copy; 2026 Shikimori-Chan Top Up - Created by Hiro</p>
-</div>
+<footer class="text-center mt-5 mb-4" style="font-size: 0.8rem; color: #666;">
+    <p>Admin WhatsApp: 0812-XXXX-XXXX</p>
+    <p>&copy; 2026 Shikimori-Chan Top Up - Dibuat oleh Hiro</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    function prosesTopUp() {
-        const id = document.getElementById('userId').value;
-        if(id === "") return alert("Isi ID Dulu, Hiro!");
+    function simulasiLogin() {
+        alert("Login Google Berhasil! Selamat Datang, Hiro.");
+        document.getElementById('loginOverlay').style.display = 'none';
+    }
 
-        // Simulasi Generate Order ID
+    function proses() {
+        const id = document.getElementById('userId').value;
+        const server = document.getElementById('serverId').value;
+        if(!id || !server) return alert("Lengkapi ID dan Server dulu!");
+
         const orderId = "SHK-" + Math.floor(Math.random() * 900000 + 100000);
-        
-        // Animasi Loading Ceritanya
-        alert("Menghubungkan ke Server Payment...");
+        alert("Sedang memproses pembayaran...");
 
         setTimeout(() => {
-            document.getElementById('displayId').innerText = id;
+            document.getElementById('displayId').innerText = id + " (" + server + ")";
             document.getElementById('orderNum').innerText = orderId;
             document.getElementById('notifSukses').style.display = "block";
-            
-            // Scroll otomatis ke bukti bayar
             window.scrollTo(0, document.body.scrollHeight);
-        }, 2000);
+        }, 1500);
     }
 </script>
 
